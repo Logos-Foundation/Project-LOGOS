@@ -102,3 +102,27 @@ How to run `Linux` or `Numpy` on SCP?
 
 > **"In the old world, the computer spent 99% of its life translating your words into noise.**
 > **In the SCP world, the computer listens."**
+
+## 5. Unified Physics: The End of Heterogeneity (大一统)
+
+The separation of CPU (Logic) and GPU (Compute) is a historical accident of the Von Neumann bottleneck.
+In SCP, this barrier dissolves.
+
+### 5.1 The Logic-Compute Continuum
+*   **CPU (Logic)**: Complex branching (`if user == admin`).
+*   **GPU (Compute)**: Massive parallelism (`pixel * brightness`).
+*   **SCP (Unified)**: Both are just **ID Operations**.
+    *   `if user == admin` -> `CMP ID#A, ID#B`
+    *   `pixel * brightness` -> `MUL ID#X, ID#Y`
+
+### 5.2 The Universal Semantic Core (USC)
+Future chips will not be "Heterogeneous" (CPU + GPU + NPU), but **Fractal Homogeneity**.
+One core architecture (USC), scaled by number:
+
+*   **SCP-Lite (Consumer)**: 64 USCs (Watch/Phone). Handles serial, high-entropy logic.
+*   **SCP-Max (HPC/AI)**: 16,384 USCs (Data Center). Handles parallel, massive-throughput data.
+
+### 5.3 Benefit: Reunification of Computer Science
+*   **No More "CUDA vs C++"**: One language (Python/Atom) for all.
+*   **No More Memory Wall**: Data stays in Unified Memory. No `memcpy` to VRAM.
+*   **Moore's Law Restart**: Logic optimization (CPU side) and Throughput optimization (GPU side) now reinforce each other.
