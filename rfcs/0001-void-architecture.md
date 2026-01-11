@@ -54,7 +54,8 @@ The **High 4 bits (Tag)** determine the polymorphic layout of the remaining 60 b
 +--------+-------------------------------------------+--------------------+
 ```
 *   **EXTENDED ID (40-bit)**: Capacity for **1 Trillion** objects.
-*   **MINI-PAYLOAD (20-bit)**: Reserved for Micro-Hash or short tags (e.g., 3 ASCII chars). **Expansion Space.**
+*   **MINI-PAYLOAD (20-bit)**: Reserved for Micro-Hash or short tags. **Expansion Space.**
+    *   *Usage*: Store 3-char abbreviation (`var`, `cfg`) or CRC20 checksum for collision detection.
 
 ### 2.3 Pointer Atom (The 4-12-48 Virtual)
 **Target**: Large Objects, Blobs, Long Strings. Based on JVM Compressed Oops & x64 Canonical Address.
@@ -118,10 +119,13 @@ To maximize the **44-bit Payload**, we strictly enforce Velo Shorthand strategie
 
 ### 5.1 English (Velo-6)
 *   **Capacity**: 7 chars ($44 // 6 = 7$).
-*   **Strategy Pipeline**:
-    1.  **L1 - Intuition**: 7-char Intercept. (e.g., `request` -> `request`)
-    2.  **L2 - Smart Numeronym**: Prefix(3) + Count + Suffix(1). (e.g., `transaction` -> `trx7n`)
-    3.  **L3 - Compound Skeleton**: (e.g., `content-type` -> `cnt-typ`)
+*   **Strategy Pipeline** (Priority: L0 > L1 > L2 > L3):
+    1.  **L0 - Golden Intuition**: Direct pass-through for words ≤7 chars.
+        *   `request` → `request` (7 chars, perfect fit)
+        *   `config` → `config` (6 chars, perfect fit)
+    2.  **L1 - Smart Numeronym**: Prefix(3) + Count + Suffix(1). (e.g., `transaction` -> `trx7n`)
+    3.  **L2 - Compound Skeleton**: (e.g., `content-type` -> `cnt-typ`)
+    4.  **L3 - Vowel Drop**: Strip non-leading vowels. (e.g., `message` -> `msg`)
 
 ### 5.2 Chinese (Velo-Han12)
 *   **Capacity**: 3 chars + 8-bit Meta ($44 // 12 = 3.66$).
@@ -144,6 +148,22 @@ To maximize the **44-bit Payload**, we strictly enforce Velo Shorthand strategie
 ### Phase 3: The Runtime
 *   [ ] Implement Pointer Atom logic (48-bit masking).
 *   [ ] Implement **Compact -> Wide** transition logic.
+
+---
+
+## 7. Optional Optimization: Heap Base Mode
+
+**Target**: Memory-constrained environments with pre-allocated Velo Heap (4GB-32GB).
+
+*   **Pointer Layout Change**:
+    *   Store **32-bit Offset** instead of 48-bit Address.
+    *   **Bonus**: 28-bit remain for inline metadata.
+*   **Metadata Usage**:
+    *   `len(str)` → O(1) register read (up to 256MB strings).
+    *   `hash(str)` → Inline CRC/FNV snippet.
+*   **Benefit**: String length and hash become **zero-dereference** operations.
+
+---
 
 > **Architect's Note**:
 > This RFC incorporates **x64 architecture optimization** (48-bit addressing) and **JVM-level compression wisdom**.

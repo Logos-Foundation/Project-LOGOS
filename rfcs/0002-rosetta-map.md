@@ -67,25 +67,30 @@ The Tag determines the interpretation of the Payload.
     *   **Resolution**: `print(ROSETTA_EXPANSION[ID])`.
 
 ### 3.3 The Abbreviation Dialect (Velo Shorthand)
-To compress Civilization Concepts into **44 bits (7 chars max)**, we strictly enforce the **Velo Shorthand Dialect**. Rules are prioritized A > B > C.
+To compress Civilization Concepts into **44 bits (7 chars max)**, we strictly enforce the **Velo Shorthand Dialect**. Rules are prioritized L1 > L2 > L3.
 
-#### Rule A: Suffix Deduplication (后缀去重)
-Distinguish base words from noun forms via phonetic suffixes.
-*   `config` (Config) -> `config` (6 chars, fits)
-*   `configuration` (Noun) -> `configr` (7 chars, fits!)
-*   `admin` -> `admin`
-*   `administrator` -> `adminstr` (8 chars -> Needs L2 compression or Wide Atom)
+#### L1: Golden Intuition (黄金直觉)
+Direct 7-char pass-through. If word ≤7 chars, use as-is.
+*   `request` → `request` (7 chars, fits)
+*   `config` → `config` (6 chars, fits)
+*   `admin` → `admin` (5 chars, fits)
 
-#### Rule B: Compound Initials (复合词骨架)
-For hyphenated (`-`) or underscored (`_`) terms, distinct first chars of each part.
-*   `content-length` -> `cnt-len` (7 chars, fits!)
-*   `content-type` -> `cnt-typ` (7 chars, fits!)
-*   `user-agent` -> `usr-agt` (7 chars, fits!)
+#### L2: Smart Numeronym (智能数字缩写)
+For words >7 chars: Prefix(3) + Middle Count + Suffix(1).
+*   `transaction` → `trx7n` (3 + "7" + 1 = 5 chars)
+*   `configuration` → `cfg9n` (3 + "9" + 1 = 5 chars)
+*   `kubernetes` → `k8s` (whitelisted exception)
 
-#### Rule C: Vowel Drop (元音剔除)
+#### L3: Compound Skeleton (复合词骨架)
+For hyphenated (`-`) or underscored (`_`) terms, take consonant skeletons of each part.
+*   `content-length` → `cnt-len` (7 chars, fits!)
+*   `content-type` → `cnt-typ` (7 chars, fits!)
+*   `user-agent` → `usr-agt` (7 chars, fits!)
+
+#### L4: Vowel Drop (元音剔除)
 Strip non-leading vowels to retain the "Consonant Skeleton".
-*   `message` -> `msg`
-*   `background` -> `bg`
+*   `message` → `msg`
+*   `background` → `bg`
 
 ---
 

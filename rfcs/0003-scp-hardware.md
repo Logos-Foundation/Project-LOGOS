@@ -78,16 +78,47 @@ The transition from Type-0.7 (Von Neumann) to Type-II (Logos) is not a revolutio
 ## 3. The Legacy Bridge (遗留兼容)
 
 How to run `Linux` or `Numpy` on SCP?
-**Strategy**: "Pass-through, not Simulate."
+**Strategy**: "Pass-through, not Simulate." (透传而非模拟)
 
+### 3.1 The Ship of Theseus Strategy (忒修斯之船)
+Migration is gradual: replace planks one by one while the ship keeps sailing.
+*   **Philosophy**: No Big Bang rewrite. Legacy code runs from Day 1.
+*   **Goal**: 90% Old Code + 10% New Logic → 100% New Logic over time.
+
+### 3.2 Software Layer: Black Box Atom
 1.  **Tag `0xF` (Raw Pointer)**:
     *   Mark legacy memory blobs as "Black Box Atoms".
     *   SCP hardware pipes them directly to the Sidecar Legacy Core.
 
-2.  **LLVM Backend**:
-    *   `clang -target scp-linux`.
-    *   Compiles C code into a "Degraded Mode" (using SCP as a dumb RISC CPU).
-    *   **Result**: Migration is gradual. 90% Old Code + 10% New Logic -> 100% New Logic.
+2.  **Zero-Copy FFI**:
+    *   SCP prepares pointer, calls `CALL_NATIVE` opcode.
+    *   Legacy Core executes C function at full speed.
+    *   Result wrapped back into Atom or ingested as new Standard Atom.
+
+### 3.3 The LLVM Backend Path
+*   **Compilation**: `clang -target scp-linux`.
+*   **Output**: "Degraded Mode" machine code.
+    *   SCP treated as a standard 64-bit RISC CPU.
+    *   No semantic acceleration, but **100% compatible**.
+*   **Byte Emulation**: Single-byte access requires LOAD + SHIFT + MASK (3 instructions).
+*   **Result**: Existing C/Linux runs at 60-80% native x86 speed.
+
+### 3.4 Raw Atom Mode (Dumb Atom)
+When Tag is `RAW (0xF)`, SCP hardware:
+*   **Disables**: All semantic matching, hash checking, ring mapping.
+*   **Becomes**: A standard 64-bit RISC-V style CPU.
+*   **Use Case**: Running Linux kernel, legacy drivers, C libraries.
+
+> **"Your existing code runs today. When you're ready for semantics, unlock 10x."**
+
+### 3.5 The Migration Phases
+
+| Phase | Name | Architecture | SCP % | Legacy % |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | **Host** | Standard x86 + Janus VM | 10% | 90% |
+| 2 | **Hybrid** | FPGA/SCP Accel + x86 Host | 50% | 50% |
+| 3 | **Native** | SCP Main + Legacy Sidecar | 90% | 10% |
+| 4 | **Pure** | Full SCP (Velo OS) | 99% | 1% |
 
 ---
 

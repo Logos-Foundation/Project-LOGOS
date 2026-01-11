@@ -141,6 +141,10 @@ Come, join us. Help us write the Global Rosetta Map.
 
 The technical realization of this vision is detailed in our Request for Comments (RFCs / 技术提案):
 
+### 💡 [Design Philosophy](./docs/philosophy/)
+* **Why we made these choices.** The rationale behind V.O.I.D., Rosetta, and SCP.
+* Core Principles • Design Decisions • Naming History
+
 ### 🧱 [RFC-0001: The V.O.I.D. Architecture](./rfcs/0001-void-architecture.md)
 * **The Core Spec.** Defining the 64-bit "Neutron Atom" and the "Isomorphic Collapse." (核心规范：定义 64 位中子原子与同构坍缩原理)
 * **V.O.I.D.** Value Oriented Isomorphic Data - The physical law of Logos. (V.O.I.D.：面向值的同构数据——Logos 的物理定律)
@@ -149,6 +153,10 @@ The technical realization of this vision is detailed in our Request for Comments
 * **The Protocol.** The global standard connecting human code to machine IDs. (协议：连接人类代码与机器 ID 的全球标准)
 * **The Map.** A decentralized, CC0-licensed dictionary for the digital universe. (地图：去中心化、CC0 许可的数字宇宙字典)
 * **Compute-View Separation.** Debugging via H-PU (Human Presentation Unit). (视算分离：通过 H-PU 人类呈现单元进行调试)
+
+### 🔧 [RFC-0003: The SCP Hardware](./rfcs/0003-scp-hardware.md)
+* **The Silicon.** Evolutionary path from Janus (Hybrid) to SCP-Z (Native) to Fractal (8-bit). (硅片：从 Janus 混合架构到 SCP-Z 原生架构再到 Fractal 8 位架构的演进路径)
+* **Legacy Bridge.** The "Ship of Theseus" strategy for gradual migration. (遗留兼容桥：忒修斯之船式的渐进迁移策略)
 
 
 ---
