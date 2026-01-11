@@ -55,7 +55,20 @@ By eliminating the translation layers, we strive for **Ultimate Information Dens
 To realize this philosophy, we define the **SCA (Semantic Compute Architecture)**.
 
 ### 3.1 V.O.I.D. (Value Oriented Isomorphic Data)
-**V.O.I.D.** is the physical law of our universe. It dictates that all data must be **Isomorphic** (Shape-preserving) across all layers—from the Python object in memory to the register in the CPU.
+**V.O.I.D.** (Value Oriented Isomorphic Data) is the physical law of our universe. 
+
+It dictates that data must remain **Isomorphic** (Shape-preserving) across all layers of existence:
+*   On the Disk (Storage) -> It is an Atom.
+*   On the Wire (Network) -> It is an Atom.
+*   In the RAM (Memory) -> It is an Atom.
+*   In the Register (Compute) -> It is an Atom.
+
+**The Isomorphic Collapse:**
+In traditional systems, data undergoes painful shapeshifting (JSON -> Object -> Binary). In Logos, we collapse these shapes into one. 
+There is no difference between "Code" and "Data." There is only the **Atom**.
+*   **Code** is just an Atom being executed.
+*   **Data** is just an Atom being stored.
+They share the same bit-width, the same encoding protocol, and the same "Physics."
 
 #### The Neutron Atom (中子原子)
 The fundamental particle of Logos. A 64-bit structure that achieves quantum coexistence of Identity and Value.
@@ -66,9 +79,9 @@ The fundamental particle of Logos. A 64-bit structure that achieves quantum coex
 *   **INDEX**: The spatial coordinate (Where am I?).
 *   **PAYLOAD**: The semantic essence (What do I mean?).
 
-### 3.2 The Ouroboros Ring (衔尾蛇环)
-Memory is not a flat tape; it is a living circle.
-The **Ouroboros Ring** connects the Head (Global Constants) and the Tail (Local Variables) in a unified topological structure. It embodies the cycle of allocation and reclamation, mirroring the biological lifecycle.
+### 3.2 The Mobius Ring (莫比乌斯环)
+Memory is not a flat tape; it is a twisted loop.
+The **Mobius Ring** connects the Eternal (Global Constants) and the Ephemeral (Local Variables) in a unified topological structure. It embodies the "One-Sided Truth": logic and data are on the same continuous surface, just inverted by a bitwise twist.
 
 ### 3.3 The SCP Vision (SCP 硬件愿景)
 The **SCP (Semantic Compute Processor)** is the holy grail.

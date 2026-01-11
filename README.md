@@ -141,10 +141,9 @@ Come, join us. Help us write the Global Rosetta Map.
 
 The technical realization of this vision is detailed in our Request for Comments (RFCs / 技术提案):
 
-### 🧱 [RFC-0001: Semantic Compute Architecture (SCA)](./rfcs/0001-sca-spec.md)
-* **The Core Spec.** Defining the 64-bit and 8-bit "Semantic Atom." (核心规范：定义 64 位与 8 位语义原子)
-* **SCP Hardware.** How the SCP-Z (Zero Payload) processor works. (硬件架构：SCP-Z 零负载处理器原理)
-* **The Unification.** How CPU logic and GPU math converge under one ID system. (万物归一：CPU 逻辑与 GPU 算力在同一 ID 体系下的融合)
+### 🧱 [RFC-0001: The V.O.I.D. Architecture](./rfcs/0001-void-architecture.md)
+* **The Core Spec.** Defining the 64-bit "Neutron Atom" and the "Isomorphic Collapse." (核心规范：定义 64 位中子原子与同构坍缩原理)
+* **V.O.I.D.** Value Oriented Isomorphic Data - The physical law of Logos. (V.O.I.D.：面向值的同构数据——Logos 的物理定律)
 
 ### 🌍 [RFC-0002: The Global Rosetta Map](./rfcs/0002-rosetta-map.md)
 * **The Protocol.** The global standard connecting human code to machine IDs. (协议：连接人类代码与机器 ID 的全球标准)
@@ -159,6 +158,6 @@ The technical realization of this vision is detailed in our Request for Comments
 We are building the **Global Rosetta Map**. This effort requires the collaboration of the world's brightest minds—compiler engineers, hardware architects, and philosophers.
 
 * **License:** All specifications and the Map are released under **CC0 (Public Domain)**.
-* **Action:** Start by reading [RFC-0001](./rfcs/0001-sca-spec.md).
+* **Action:** Start by reading [RFC-0001](./rfcs/0001-void-architecture.md).
 
 **Join us. Let us teach silicon to speak Logos.**
