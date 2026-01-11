@@ -23,7 +23,29 @@ All data units are represented in registers as a **64-bit Atom**.
 *   Physical memory of `0x0000000000000000` represents "Nothingness".
 *   **Engineering Benefit**: Allows Rust's `Option<Atom>` to use **Niche Optimization**, keeping the size at exactly 64-bit (no extra boolean flag).
 
----
+### 1.2 Architecture Overview
+
+```mermaid
+graph LR
+    subgraph Carbon["Carbon (Human)"]
+        A["Python Code<br/>user.name = 'Velo'"]
+    end
+    
+    subgraph VOID["V.O.I.D. Layer"]
+        B["64-bit Atom<br/>[TAG|INDEX|PAYLOAD]"]
+    end
+    
+    subgraph Silicon["Silicon (Machine)"]
+        C["CPU Register<br/>Direct Execution"]
+    end
+    
+    A -->|"Isomorphic<br/>Collapse"| B
+    B -->|"Zero<br/>Decode"| C
+    
+    style A fill:#4a9eff,color:#fff
+    style B fill:#9b59b6,color:#fff
+    style C fill:#2ecc71,color:#fff
+```
 
 ## 2. Atom Layout Standards (原子位布局标准)
 

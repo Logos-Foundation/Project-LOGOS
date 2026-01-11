@@ -27,6 +27,34 @@ No Decode. No Translate. Just Match.
 
 The transition from Type-0.7 (Von Neumann) to Type-II (Logos) is not a revolution, but a "Ship of Theseus" evolution.
 
+```mermaid
+graph LR
+    subgraph Phase1["V1: Janus"]
+        J1["x86/ARM Host"]
+        J2["SCP Accelerator"]
+        J1 <--> J2
+    end
+    
+    subgraph Phase2["V2: SCP-Z"]
+        S1["SCP Core"]
+        S2["H-PU Debug"]
+        S1 --> S2
+    end
+    
+    subgraph Phase3["V3: Fractal"]
+        F1["8-bit USC"]
+    end
+    
+    Phase1 -->|"Migration"| Phase2
+    Phase2 -->|"Miniaturization"| Phase3
+    
+    style J1 fill:#e74c3c,color:#fff
+    style J2 fill:#9b59b6,color:#fff
+    style S1 fill:#9b59b6,color:#fff
+    style S2 fill:#3498db,color:#fff
+    style F1 fill:#2ecc71,color:#fff
+```
+
 ### 2.1 V1: Janus (The Hybrid / Sidecar)
 **Philosophy**: "Human-Centric" (兼容人类习惯).
 **Goal**: Run existing Code (Legacy) + New Semantics (Atom).
