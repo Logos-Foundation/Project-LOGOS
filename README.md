@@ -3,115 +3,136 @@
 </div>
 
 <div align="center">
-  <img src="assets/logo.png" alt="Project Logos" width="150"/>
-  <br>
-  <h1>The Engine for a Type-II Civilization</h1>
-  <p><strong>Computing at the Speed of Meaning. / 以意义的光速计算</strong></p>
-  
-  [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
-  [![RFC Status](https://img.shields.io/badge/RFCs-Active-success.svg)](./rfcs/)
-  <br>
   <h3>
     <a href="#en">English Manifesto</a> • <a href="#cn">中文宣言</a>
   </h3>
+  
+  [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+  [![RFC Status](https://img.shields.io/badge/RFCs-Active-success.svg)](./rfcs/)
 </div>
 
 ---
 
 <a name="en"></a>
-## 📜 The Negentropy Manifesto
-### To Avoid Being Compute-Locked on Earth
 
-> **"For 70 years, we taught computers to calculate. Now, let us teach them to understand."**
+# The Logos Manifesto
+### The Negentropy Manifesto: To the Next Civilization
 
 ### 1. On the Shoulders of Giants
 
-Before we take this step, we pay our highest tribute to **John von Neumann**, **Claude Shannon**, and **Alan Turing**.
+> *Before we take this step, let us pay our highest tribute to John von Neumann, Claude Shannon, and Alan Turing.*
 
-70 years ago, when Von Neumann drew the classic architecture, he faced expensive vacuum tubes and scarce memory. He gave us the best possible solution for *that* era. The separation of storage and computation, the sequential decoding—these were not architectural errors, but historical compromises.
+Seventy years ago, when von Neumann sketched that classic architecture in Princeton, he faced exorbitantly expensive vacuum tubes and scarce memory. In an era of material scarcity, he used the optimal logic of his time to light the dawn of computing for humanity.
 
-Today, we stand on their shoulders. We have the bandwidth Shannon dreamed of and the semantic data Turing envisioned. We are not here to overthrow their work, but to **fulfill their unfinished legacy**: to build a machine that follows the *Principle of Least Action*, processing "meaning" directly.
+The physical limitations of that era forced pioneers to compromise: to split "instruction" from "data," to endure lengthy decoding processes, and to accept high-entropy coding efficiency.
 
-### 2. The Crisis: The Ant's View
+**That was not a flaw in the architecture; it was a compromise of the era.**
 
-Current computing operates from an "Ant's View."
-The CPU is a blind worker ant. It moves bits (sand) without knowing if they belong to a masterpiece painting or a piece of garbage. Because it doesn't understand, it needs complex supervisors (decoders, branch predictors, out-of-order execution) to guide it.
+Today, we stand on the shoulders of giants. We possess the theoretical guidance on ultimate information density that Shannon bestowed upon us, along with decades of accumulated semantic data.
 
-This creates the **"Middleman Tax"**:
-* To execute `if user == admin`:
-* We compile strings to ASCII.
-* We load bytes into registers.
-* We compare byte by byte in a loop.
-* **Result:** 90% of energy is wasted on "data logistics," not "business logic."
+Precisely because physical bandwidth limits are insurmountable, we must fulfill the legacy our pioneers left unfinished: To build a machine that truly adheres to the 'Principle of Least Action'—one that processes 'Meaning' directly, just like a brain.
 
-This is **High-Entropy Computing**. It generates heat, wastes electricity, and locks our AI capabilities within the limits of planetary energy production.
+Von Neumann is here. Shannon is here. Project LOGOS is the ultimate tribute to classical physics, and a bugle call for the advancement of future civilization.
 
-### 3. The Solution: The God's View
+### 2. The Entropy Trap
 
-**Project LOGOS** flips the perspective to the "God's View" (Top-Down).
+The spark left by von Neumann ignited the Information Age, but today, that spark is burning down our forest.
 
-We start with the premise: **Python (and human logic) is a precise natural language.**
-We map these high-level semantic concepts directly to unique, immutable **IDs (Atoms)**.
+We are in the midst of a dangerous "Computational Inflation." To make a machine understand a simple "Hello," we squander 99% of our electrons in fiber optic cables beneath the oceans and in data centers across deserts, merely for "Translation," "Transport," and "Prediction."
 
-* **No Decoding:** The hardware sees `ID#Admin` and `ID#User`.
-* **No Translation:** The instruction is simply `MATCH`.
-* **Code is Silicon:** The software logic maps 1:1 to physical circuit paths.
+**Our computing power is built upon massive entropy generation.**
 
-### 4. Toward Type-II Civilization
+If future AI requires a nuclear power plant to run, then AI will forever remain a toy for the giants. If future computing cannot return to "Meaning" itself, we will remain trapped forever in the energy snare of a Type 0.7 Civilization.
 
-If AI serves as the nervous system of our future civilization, it cannot run on inefficient, coal-burning architectures.
-We need **Low-Entropy Computing**. We need a "Silent Mode" where machines communicate in pure logic (IDs), bypassing human visual redundancy until necessary.
+This path leads not to the stars.
 
-Logos is the engine for this transition. It is the roadmap to a future where compute is as abundant as air, and as efficient as a neuron.
+### 3. Project LOGOS
+
+Today, we initiate Project LOGOS.
+
+We are not here to patch the old world; we are here to redefine what "Computing" is.
+
+Through the SCP (Semantic Compute Processor) architecture, we allow silicon to read human language for the first time. We eliminate the middlemen. We abolish the decoding tax. We end the bloated logic of unnecessary complexity.
+
+*   **No More Decoding**: Let 8-bit atoms directly carry the wisdom of the universe.
+*   **Code is Silicon**: Let software logic map directly to hardware order.
+*   **Unified Physics**: Let CPU and GPU be reunited at the semantic level.
+
+This is a redemption from Atom to Civilization. This is a ticket to a Type-II Civilization (Stellar Civilization).
+
+### 4. The Invitation
+
+To the architects, hackers, compiler experts, and thinkers of the world:
+
+We do not need you to be an employee of a big corporation; we only need you to be equally tired of meaningless complexity. We need you to join us in completing this "Rosetta Stone" of the digital age.
+
+Come, join us. Help us write the Global Rosetta Map.
+
+**Let us teach silicon-based life what LOGOS truly means.**
+
+<br>
+<br>
 
 ---
 
 <a name="cn"></a>
-## 📜 计算熵减宣言 (The Negentropy Manifesto)
-### 为了不被算力锁死在地球上 (To Avoid Being Compute-Locked on Earth)
 
-> **“70年来，我们教会了计算机如何计算。现在，让我们教会它们如何理解。”**
+# 计算熵减宣言
+### 致下一个文明纪元 (The Negentropy Manifesto)
 
 ### 1. 巨人的肩膀 (On the Shoulders of Giants)
 
-在我们迈出这一步之前，让我们先向 **约翰·冯·诺依曼**、**克劳德·香农** 以及 **艾伦·图灵** 致以最崇高的敬意。
+> *在我们迈出这一步之前，让我们先向 约翰·冯·诺依曼、克劳德·香农 以及 艾伦·图灵 致以最崇高的敬意。*
 
-70 年前，当冯·诺依曼画下那张经典的架构图时，他面对的是昂贵的电子管和稀缺的内存。他给出了*那个*时代的最优解。存储与计算分离、串行解码——这些不是架构的错误，而是历史的妥协。
+70 年前，当冯·诺依曼在普林斯顿画下那张经典的架构图时，他面对的是极其昂贵的电子管和极度匮乏的存储器。他用当时最优的方案，为人类点亮了计算的黎明。
 
-今天，我们站在了巨人的肩膀上。我们拥有了香农梦寐以求的无限带宽（极致信息密度），拥有了图灵构想的语义数据。并不是我们要推翻他们的丰碑，而是我们要**完成他们未竟的遗愿**：建造一台真正符合“最小作用量原理”、像大脑一样直接处理“意义”的机器。
+那个时代的物理限制，迫使先驱们不得不将“指令”与“数据”拆分，不得不忍受冗长的译码过程，不得不接受高熵的编码效率。
 
-### 2. 危机：蚂蚁视角 (The Crisis: The Ant's View)
+**那不是架构的错误，那是时代的妥协。**
 
-当今的计算运作于“蚂蚁视角”。
-CPU 是盲目的工蚁。它搬运比特（沙粒），却不知道它们属于一幅传世名画还是只是垃圾。因为它不理解，所以需要复杂的监工（解码器、分支预测、乱序执行）来指挥它。
+今天，我们站在了巨人的肩膀上。我们拥有了香农关于极致信息密度的理论指引，拥有了人类数十年积累的语义数据。
 
-这就产生了**“中间商税”**：
-* 为了执行 `if user == admin`：
-* 我们将字符串编译为 ASCII。
-* 我们加载字节到寄存器。
-* 我们循环逐字节比较。
-* **结果**：90% 的能量浪费在“数据物流”上，而非“业务逻辑”。
+正是因为物理带宽的边界不可逾越，我们才必须完成先驱们未竟的遗愿： 建造一台真正符合“最小作用量原理”、像大脑一样直接处理“意义”的机器。
 
-这是**高熵计算**。它产生热量，浪费电力，将我们的 AI 能力锁死在行星能源的上限之内。
+冯·诺依曼在此，香农在此。 Project LOGOS，是向经典物理学的终极致敬，也是向未来文明的进军号角。
 
-### 3. 解法：上帝视角 (The Solution: The God's View)
+### 2. 熵的陷阱 (The Entropy Trap)
 
-**Project LOGOS** 将视角反转为“上帝视角”（自顶向下）。
+冯·诺依曼留下的火种点燃了信息时代，但今天，这颗火种正在烧尽我们的森林。
 
-我们的前提是：**Python（及人类逻辑）是一种精确的自然语言。**
-我们将这些高层语义概念直接映射为唯一、不可变的 **ID（原子）**。
+我们正处于危险的“计算通胀”之中。为了让机器听懂一句 "Hello"，需要在大洋底下的光缆和沙漠里的数据中心里，浪费 99% 的电子去做“翻译”和“搬运”。
 
-* **无解码**：硬件直接看到 `ID#Admin` 和 `ID#User`。
-* **无翻译**：指令仅仅是 `MATCH`。
-* **代码即硅**：软件逻辑与物理电路路径 1:1 映射。
+**我们的算力建立在巨大的熵增之上。**
 
-### 4. 迈向 Type-II 文明 (Toward Type-II Civilization)
+如果未来的 AI 需要一座核电站才能运行，那 AI 永远只是巨头的玩具。 如果未来的计算不能回归“意义”本身，我们将永远被困在 Type 0.7 文明的能耗陷阱里。
 
-如果 AI 是未来文明的神经系统，它就不能运行在低效的、烧煤的架构上。
-我们需要**低熵计算**。我们需要一种“静默模式”，机器之间用纯逻辑（ID）交流，绕过人类视觉的冗余。
+这条路，通向不了群星。
 
-Logos 是这场转型的引擎。它是一张路线图，通往那个算力如空气般充沛、如神经元般高效的未来。
+### 3. Project LOGOS
 
+今天，我们发起 Project LOGOS。
+
+我们不是要修补旧世界，我们要重新定义什么是“计算”。
+
+通过 SCP (Semantic Compute Processor) 架构，我们让硅片第一次读懂了人类的语言。我们消除了中间商，我们消灭了译码税。我们终结了不必要的复杂逻辑。
+
+*   **不再译码 (No More Decoding)**：让 8-bit 的原子直接承载宇宙的智慧。
+*   **代码即硅 (Code is Silicon)**：让软件逻辑直接映射为硬件秩序。
+*   **物理统一 (Unified Physics)**：让 CPU 和 GPU 在语义层面重新统一。
+
+这是一场从原子（Atom）到文明（Civilization）的救赎。 这是一张通往 Type-II 文明（恒星级文明）的船票。
+
+### 4. 邀请 (The Invitation)
+
+致全球的架构师、黑客、**编译专家**与思想者：
+
+不需要你是大公司的员工，只需要你同样厌倦了**叠床架屋**的臃肿世界。我们需要你加入我们，一起完成这块数字时代的“罗塞塔石碑”。
+
+来吧，帮我们一起编写那张 Global Rosetta Map。
+
+**让我们教会硅基生命，什么是 LOGOS（道）。**
+
+<br>
 <br>
 
 ---
@@ -121,18 +142,15 @@ Logos 是这场转型的引擎。它是一张路线图，通往那个算力如�
 The technical realization of this vision is detailed in our Request for Comments (RFCs / 技术提案):
 
 ### 🧱 [RFC-0001: Semantic Compute Architecture (SCA)](./rfcs/0001-sca-spec.md)
-* **The Core Spec.** Defining the 64-bit and 8-bit "Semantic Atom."
-* **SCP Hardware.** How the SCP-Z (Zero Payload) processor works.
-* **The Unification.** How CPU logic and GPU math converge under one ID system.
+* **The Core Spec.** Defining the 64-bit and 8-bit "Semantic Atom." (核心规范：定义 64 位与 8 位语义原子)
+* **SCP Hardware.** How the SCP-Z (Zero Payload) processor works. (硬件架构：SCP-Z 零负载处理器原理)
+* **The Unification.** How CPU logic and GPU math converge under one ID system. (万物归一：CPU 逻辑与 GPU 算力在同一 ID 体系下的融合)
 
 ### 🌍 [RFC-0002: The Global Rosetta Map](./rfcs/0002-rosetta-map.md)
-* **The Protocol.** The global standard connecting human code to machine IDs.
-* **The Map.** A decentralized, CC0-licensed dictionary for the digital universe.
-* **Compute-View Separation.** Debugging via H-PU (Human Presentation Unit).
+* **The Protocol.** The global standard connecting human code to machine IDs. (协议：连接人类代码与机器 ID 的全球标准)
+* **The Map.** A decentralized, CC0-licensed dictionary for the digital universe. (地图：去中心化、CC0 许可的数字宇宙字典)
+* **Compute-View Separation.** Debugging via H-PU (Human Presentation Unit). (视算分离：通过 H-PU 人类呈现单元进行调试)
 
-### 🚀 [RFC-0003: Velo - The Reference Implementation](./rfcs/0003-velo-reference.md)
-* **The Product.** How [Velo Runtime](https://github.com/project-logos/velo) implements Logos concepts on legacy x86/ARM today.
-* **Strategy.** The dual-track approach: Logos for the future standard, Velo for present-day performance.
 
 ---
 
