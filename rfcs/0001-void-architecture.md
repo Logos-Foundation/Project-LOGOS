@@ -1,135 +1,150 @@
-# RFC-0001: The V.O.I.D. Architecture
-## V.O.I.D. 架构规范
+# RFC-0001: V.O.I.D. Kernel Architecture
+## V.O.I.D. 内核架构
 
 | Metadata | Value |
 | :--- | :--- |
 | **RFC ID** | 0001 |
-| **Title** | The V.O.I.D. Architecture & Neutron Atom Spec |
-| **Status** | **Active (Genesis)** |
-| **Authors** | The Logos Foundation |
-| **License** | CC0-1.0 (Public Domain) |
+| **Title** | V.O.I.D. Architecture & Neutron Encoding Standard |
+| **Version** | **0.9.0 (Draft)** |
+| **Status** | **Active (Core Architecture)** |
+| **Authors** | Velo Core Team (Human Architect & AI Copilot) |
+| **Date** | 2026-01-11 |
+| **Scope** | Memory Model, Atom Layout, ID Allocation, Encoding Protocol |
 
 ---
 
-## 1. Abstract (摘要)
+## 1. Core Definitions (核心定义)
 
-**English:**
-This document defines the **V.O.I.D. (Value Oriented Isomorphic Data)** Architecture, the foundational physical law of Project LOGOS. 
+Velo Runtime is based on the **V.O.I.D. (Value Oriented Isomorphic Data)** Architecture.
+All data units are represented in registers as a **64-bit Atom**.
 
-It establishes the **Principle of Isomorphic Collapse**, stating that "Code" and "Data" are merely two states of the same particle—the **Neutron Atom**. 
-
-This RFC specifies the bit-level layout of the **4-16-44 Neutron Atom** and the **Mobius Ring** memory topology, providing the blueprints for a system where storage, transmission, and computation share a single, unified physics.
-
-**中文:**
-本文档定义了 **V.O.I.D. (面向值的同构数据)** 架构，这是 Project LOGOS 的基础物理定律。
-
-它确立了 **同构坍缩原理 (Principle of Isomorphic Collapse)**，即“代码”和“数据”仅仅是同一粒子——**中子原子 (Neutron Atom)** 的两种状态。
-
-本 RFC 规范了 **4-16-44 中子原子** 的位级布局以及 **莫比乌斯环 (Mobius Ring)** 内存拓扑，为一个存储、传输、计算共享同一物理法则的系统提供了蓝图。
+### 1.1 The Non-Zero Axiom (非零公理)
+**Tag 0x0 (0000) MUST be reserved for NULL/VOID.**
+*   Physical memory of `0x0000000000000000` represents "Nothingness".
+*   **Engineering Benefit**: Allows Rust's `Option<Atom>` to use **Niche Optimization**, keeping the size at exactly 64-bit (no extra boolean flag).
 
 ---
 
-## 2. Philosophy: Isomorphic Collapse (哲学：同构坍缩)
+## 2. Atom Layout Standards (原子位布局标准)
 
-### 2.1 The Shape-Shifting Cost (变形的代价)
-In Type 0.7 computing, data undergoes painful shapeshifting:
-*   **Disk**: Buffer / JSON / Parquet
-*   **RAM**: Objects / Pointers / VTables
-*   **CPU**: Registers / Opcodes
+The **High 4 bits (Tag)** determine the polymorphic layout of the remaining 60 bits.
 
-Every transformation burns energy. Every decoding creates latency.
+### 2.1 Compact Atom (The 4-16-44 Standard)
+**Target**: Global IDs (< 65k) and Local IDs (< 65k offset). Covers 99% of use cases.
 
-### 2.2 The Collapse (坍缩)
-V.O.I.D. dictates that data must remain **Isomorphic** (Shape-preserving) across all dimensions.
-
-> **VIAS (Velo Isomorphic Atom System)**:
-> There is no "Code". There is no "Data". There is only the **Atom**.
-> *   **Code**: Atoms in the instruction pipeline.
-> *   **Data**: Atoms in the storage heap.
-
-They share the exact same 64-bit structure. The CPU does not need to decode an Atom to understand it; it simply accepts it.
-
----
-
-## 3. The Neutron Atom Specification (中子原子规范)
-
-The fundamental quanta of Logos is the **64-bit Neutron Atom**.
-
-### 3.1 Bit Layout: `4-16-44`
-
+```plaintext
+63      60 59              44 43                                          0
++--------+------------------+---------------------------------------------+
+|  TAG   |      INDEX       |                   PAYLOAD                   |
+| (4-bit)|     (16-bit)     |         (44-bit, 7 chars / 3.5 CJK)         |
++--------+------------------+---------------------------------------------+
 ```
-[ TAG (4-bit) ] [ INDEX (16-bit) ] [ PAYLOAD (44-bit) ]
-63..........60  59.............44  43................0
+*   **TAG (4-bit)**: Identity & Spacetime coordinate.
+*   **INDEX (16-bit)**: Ring Buffer Offset.
+*   **PAYLOAD (44-bit)**: Full Semantic Snapshot (7-char ASCII or 3-char CJK + Meta).
+
+### 2.2 Wide Atom (The 4-40-20 Extended)
+**Target**: Local ID Overflow (> 65k) or Future Library Expansion.
+
+```plaintext
+63      60 59                                      20 19                  0
++--------+-------------------------------------------+--------------------+
+|  TAG   |               EXTENDED ID                 |    MINI-PAYLOAD    |
+| (4-bit)|                (40-bit)                   |      (20-bit)      |
++--------+-------------------------------------------+--------------------+
 ```
+*   **EXTENDED ID (40-bit)**: Capacity for **1 Trillion** objects.
+*   **MINI-PAYLOAD (20-bit)**: Reserved for Micro-Hash or short tags (e.g., 3 ASCII chars). **Expansion Space.**
 
-### 3.2 Field Definitions
+### 2.3 Pointer Atom (The 4-12-48 Virtual)
+**Target**: Large Objects, Blobs, Long Strings. Based on JVM Compressed Oops & x64 Canonical Address.
 
-#### A. TAG (Identity) - [63:60]
-Defines the ontological category of the Atom. 15 usable states (`0x0` is Void).
-
-| Tag | Name | Description |
-| :--- | :--- | :--- |
-| `0x0` | **VOID/NULL** | The semantic void. Absence of value. |
-| `0x1` | **GLOBAL_SYM** | Global Symbol (e.g., universal constants, dictionary IDs). |
-| `0x2` | **LOCAL_REF** | Local Reference (e.g., stack variables, transient data). |
-| `0x3` | **LITERAL_INT** | Small Integer (Inline Value). |
-| `...` | *Reserved* | Reserved for vector types, pointers, etc. |
-
-#### B. INDEX (Space) - [59:44]
-Defines the **Address** within the Ouroboros Ring segment.
-*   **Width**: 16 bits.
-*   **Capacity**: 65,536 slots per Segment.
-*   **Speed**: Enables single-cycle direct addressing (L1 Cache friendly).
-
-#### C. PAYLOAD (Meaning) - [43:0]
-Defines the **Value** or **Snapshot**. 
-*   **Width**: 44 bits.
-*   **Capacity**: 17.6 Trillion combinations.
-*   **Usage**: Stores the Semantic ID (from Rosetta Map) or immediate data. O(1) semantic resolution.
+```plaintext
+63      60 59        48 47                                                0
++--------+------------+---------------------------------------------------+
+|  TAG   |    META    |                VIRTUAL ADDRESS                    |
+| (4-bit)|  (12-bit)  |            (48-bit Canonical Pointers)            |
++--------+------------+---------------------------------------------------+
+```
+*   **TAG**: `0xF` (1111).
+*   **VIRTUAL ADDRESS (48-bit)**: Matches Modern CPU (x86-64 Level 4 Paging) limit (256 TB).
+    *   *Implementation*: `ptr = atom & 0x0000FFFFFFFFFFFF`.
+*   **META (12-bit)**: **Micro-Metadata Space**.
+    *   *Usage*: Store "GC Color", "Type Marker", or "Short Length" (< 4096).
+    *   *Benefit*: Check string length without dereferencing pointer.
 
 ---
 
-## 4. The Mobius Ring (莫比乌斯环)
+## 3. The Tag Spectrum (Tag 频谱)
 
-The memory model implies a continuous, non-orientable topology, represented by the **Mobius Strip**.
+The 4-bit Tag creates 16 parallel dimensions. "0 is Reserved".
 
-### 4.1 Topology
-
-A unified `u64` address space bent into a twisted loop.
-
-*   **Positive Side (The Eternal)**: The **Global Zone**.
-    *   Grow direction: Forward (`0x0...` ->).
-    *   Content: Universal Constants, Rosetta Map IDs.
-    *   Nature: Immutable. The "Laws of Physics."
-
-*   **Negative Side (The Ephemeral)**: The **Local Zone**.
-    *   Grow direction: Backward (`<- 0xF...`).
-    *   Content: Stack Frames, Flux Variables.
-    *   Nature: Ephemeral.
-
-### 4.2 The Twist (反转)
-They are not two separate spaces; they are one surface with a twist.
-The hardware accesses the Local Zone via a simple bitwise NOT (`!ID`) of the Global space. 
-This is the **"One-Sided Truth"**: Whether you are a timeless constant or a fleeting variable, you are structurally identical. You just reside on different "sides" of the same ring.
+| Binary | Hex | Name | Semantic Definition | Index Meaning | Payload Meaning |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **0000** | **0x0** | **VOID / NULL** | **The Void**. Uninitialized Memory. | N/A | N/A |
+| **0001** | **0x1** | **Global Std** | Standard Static Atom (Little-End) | Real ID = Index | Standard Alias (`config`) |
+| **0010** | **0x2** | **Local Dyn** | Process Dynamic Atom (Big-End) | Real ID = `!Index` | Hash Fingerprint (`var~F1`) |
+| **0011** | **0x3** | **Inline Str** | Tiny String (No Index) | N/A | 7-byte Raw ASCII |
+| **0100** | **0x4** | **Inline Int** | Small Integer | N/A | 44-bit Signed Integer |
+| `...` | `...` | *Reserved* | Future Expansion (Vector, Tensor) | ... | ... |
+| **1111** | **0xF** | **Raw Pointer** | Heap Pointer (Layout Change) | Meta (12-bit) | Virtual Address (48-bit) |
 
 ---
 
-## 5. Strategic Implication: Global Pre-Encoding (战略：全局预编码)
+## 4. ID Topology: The Ouroboros Ring (ID 拓扑)
 
-V.O.I.D. is not just for CPUs. It is a protocol for the **Data Universe**.
+The `u64` address space is a Bidirectional Ring Buffer.
 
-**The ETL Revolution**:
-Instead of constantly parsing JSON/CSV at every step of the pipeline (ETL -> Warehouse -> Training):
-1.  **Pre-Encode** data into V.O.I.D. Atoms at the edge (Ingestion).
-2.  Store Atoms directly on disk (Isomorphic Storage).
-3.  Transmit Atoms directly over 5G/Fiber (Isomorphic Transmission).
-4.  Compute Atoms directly in the SCP (Isomorphic Compute).
+1.  **Global Zone (Little-End)**:
+    *   **Start**: 0 (Tag `0x1`)
+    *   **Direction**: `0 -> 1 -> 2 ...`
+    *   **Compute**: `RealID = Index`
 
-This creates a **Zero-Friction Pipeline** from the sensor to the AI model.
+2.  **Local Zone (Big-End)**:
+    *   **Start**: Max (Tag `0x2`)
+    *   **Direction**: `Max -> Max-1 ...`
+    *   **Compute**: `RealID = !Index` (Bitwise NOT)
+
+**The Adaptation Machine (自动降级)**:
+*   **Compact**: Distance < 65,536 -> Use **4-16-44**.
+*   **Wide**: Distance >= 65,536 -> Use **4-40-20**.
+*   **Safety**: Guaranteed infinite capacity with graceful performance degradation (O(1) -> Table Lookup).
 
 ---
 
-## 6. Conclusion
+## 5. Encoding Protocol: VSCP (Velo Standard Contraction Protocol)
 
-The V.O.I.D. Architecture is the realization of the "Grand Unification."
-By collapsing the artificial barriers between storage, network, and compute, and by unifying the representation of Logic and Value, we lay the foundation for a Type-II Computing Paradigm.
+To maximize the **44-bit Payload**, we strictly enforce Velo Shorthand strategies.
+
+### 5.1 English (Velo-6)
+*   **Capacity**: 7 chars ($44 // 6 = 7$).
+*   **Strategy Pipeline**:
+    1.  **L1 - Intuition**: 7-char Intercept. (e.g., `request` -> `request`)
+    2.  **L2 - Smart Numeronym**: Prefix(3) + Count + Suffix(1). (e.g., `transaction` -> `trx7n`)
+    3.  **L3 - Compound Skeleton**: (e.g., `content-type` -> `cnt-typ`)
+
+### 5.2 Chinese (Velo-Han12)
+*   **Capacity**: 3 chars + 8-bit Meta ($44 // 12 = 3.66$).
+*   **Meta Usage**: Hash or Pinyin Initial to resolve collisions.
+*   **Example**: `已发货` -> `[已][发][货][0x00]`.
+
+---
+
+## 6. Implementation Roadmap
+
+### Phase 1: The Core
+*   [ ] Define `struct Atom(u64)` in Rust.
+*   [ ] Implement Tag enum and bitmask macros.
+*   [ ] Verify `Option<Atom>` size is 64-bit (NonZero optimization).
+
+### Phase 2: The Encoder
+*   [ ] Implement VSCP algorithms (Velo-6 / Velo-Han12).
+*   [ ] Generate `vstd.bin` (Global Rosetta Table) from Top 1000 Python libs.
+
+### Phase 3: The Runtime
+*   [ ] Implement Pointer Atom logic (48-bit masking).
+*   [ ] Implement **Compact -> Wide** transition logic.
+
+> **Architect's Note**:
+> This RFC incorporates **x64 architecture optimization** (48-bit addressing) and **JVM-level compression wisdom**.
+> We have defined a system with **Micro-Excellence** (Compact Atom) and **Macro-Infinity** (Wide/Pointer Atom).
