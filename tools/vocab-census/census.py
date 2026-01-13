@@ -264,6 +264,7 @@ def aggregate_reports(project_reports: list[dict]) -> dict:
                 seen_in_project.add(key)
     
     # Convert to list, sorted by global count
+    # Filter: only include words with global_count > 2
     vocabulary = [
         {
             "word": word,
@@ -275,6 +276,7 @@ def aggregate_reports(project_reports: list[dict]) -> dict:
             global_vocab.items(),
             key=lambda x: -x[1]["global_count"]
         )
+        if data["global_count"] > 2
     ]
     
     return {
