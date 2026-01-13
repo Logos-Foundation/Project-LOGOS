@@ -351,12 +351,24 @@ def main():
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=2)
         
+        # Also output CSV (smaller file size)
+        csv_path = output_path.replace(".json", ".csv")
+        with open(csv_path, "w", encoding="utf-8") as f:
+            f.write("word,global_count,project_coverage,type\n")
+            for item in result["vocabulary"]:
+                # Escape special characters
+                word = item["word"].replace('"', '""')
+                if "," in word or '"' in word or "\n" in word:
+                    word = f'"{word}"'
+                f.write(f'{word},{item["global_count"]},{item["project_coverage"]},{item["type"]}\n')
+        
         # Calculate hash
         content = json.dumps(result, ensure_ascii=False, sort_keys=True)
         content_hash = hashlib.sha256(content.encode()).hexdigest()[:16]
         
         print(f"Done! Total {result['meta']['total_unique_words']} unique words")
         print(f"Output: {output_path}")
+        print(f"Output: {csv_path}")
         print(f"Hash: {content_hash}")
     
     return 0
