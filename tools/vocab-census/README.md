@@ -56,6 +56,7 @@ head -50 output/vocab_report.json
 - Comments  
 - Single-character identifiers (`i`, `j`, `x`)
 - Pure digits
+- Words with global_count ≤ 2
 
 **Included:**
 - All identifiers ≥2 characters
