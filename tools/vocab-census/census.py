@@ -353,23 +353,43 @@ def main():
         with open(output_path, "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=2)
         
-        # Also output CSV (smaller file size)
-        csv_path = output_path.replace(".json", ".csv")
-        with open(csv_path, "w", encoding="utf-8") as f:
-            # Write meta info as comments
-            meta = result["meta"]
+        # Output CSV files
+        csv_full_path = output_path.replace(".json", ".csv")
+        csv_preview_path = output_path.replace(".json", "_preview.csv")
+        
+        def write_csv(f, vocab_items, meta):
+            """Write CSV with meta comments header"""
             f.write(f'# version: {meta["version"]}\n')
             f.write(f'# generated_at: {meta["generated_at"]}\n')
             f.write(f'# tool_version: {meta["tool_version"]}\n')
             f.write(f'# source_projects: {meta["source_projects"]}\n')
             f.write(f'# total_unique_words: {meta["total_unique_words"]}\n')
             f.write("word,global_count,project_coverage,type\n")
-            for item in result["vocabulary"]:
-                # Escape special characters
+            for item in vocab_items:
                 word = item["word"].replace('"', '""')
                 if "," in word or '"' in word or "\n" in word:
                     word = f'"{word}"'
                 f.write(f'{word},{item["global_count"]},{item["project_coverage"]},{item["type"]}\n')
+        
+        # Write full CSV
+        with open(csv_full_path, "w", encoding="utf-8") as f:
+            write_csv(f, result["vocabulary"], result["meta"])
+        
+        # Compress full CSV to tar.gz
+        import tarfile
+        tar_path = csv_full_path + ".tar.gz"
+        with tarfile.open(tar_path, "w:gz") as tar:
+            tar.add(csv_full_path, arcname="vocab_report.csv")
+        
+        # Write preview CSV (top 1000 words for GitHub preview)
+        preview_meta = result["meta"].copy()
+        preview_meta["note"] = "preview (top 1000 words)"
+        with open(csv_preview_path, "w", encoding="utf-8") as f:
+            f.write(f'# note: preview (top 1000 words, see vocab_report.csv.tar.gz for full data)\n')
+            write_csv(f, result["vocabulary"][:1000], preview_meta)
+        
+        # Remove uncompressed full CSV (keep only tar.gz)
+        Path(csv_full_path).unlink()
         
         # Calculate hash
         content = json.dumps(result, ensure_ascii=False, sort_keys=True)
@@ -377,7 +397,8 @@ def main():
         
         print(f"Done! Total {result['meta']['total_unique_words']} unique words")
         print(f"Output: {output_path}")
-        print(f"Output: {csv_path}")
+        print(f"Output: {tar_path} (full data)")
+        print(f"Output: {csv_preview_path} (top 1000 for preview)")
         print(f"Hash: {content_hash}")
     
     return 0
