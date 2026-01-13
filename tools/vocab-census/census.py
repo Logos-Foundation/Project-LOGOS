@@ -354,6 +354,13 @@ def main():
         # Also output CSV (smaller file size)
         csv_path = output_path.replace(".json", ".csv")
         with open(csv_path, "w", encoding="utf-8") as f:
+            # Write meta info as comments
+            meta = result["meta"]
+            f.write(f'# version: {meta["version"]}\n')
+            f.write(f'# generated_at: {meta["generated_at"]}\n')
+            f.write(f'# tool_version: {meta["tool_version"]}\n')
+            f.write(f'# source_projects: {meta["source_projects"]}\n')
+            f.write(f'# total_unique_words: {meta["total_unique_words"]}\n')
             f.write("word,global_count,project_coverage,type\n")
             for item in result["vocabulary"]:
                 # Escape special characters
